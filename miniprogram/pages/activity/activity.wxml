@@ -1,0 +1,28 @@
+<view class="page">
+  <!-- 活动列表 -->
+  <view class="activity-list">
+    <view
+      class="activity-item"
+      wx:for="{{activities}}"
+      wx:key="id"
+      data-item="{{item}}"
+      bindtap="goActivityDetail"
+    >
+      <image class="activity-cover" src="{{item.background}}" mode="widthFix" lazy-load />
+      <view class="activity-info">
+        <text class="activity-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-wrap" wx:if="{{!loading && activities.length === 0}}">
+    <text class="empty-text">暂无活动</text>
+  </view>
+</view>

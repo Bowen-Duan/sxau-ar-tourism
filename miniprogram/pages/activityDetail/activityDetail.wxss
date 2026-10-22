@@ -1,0 +1,82 @@
+/* 全局字体设置 */
+page, view, text, button, input, textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+}
+
+.page {
+  min-height: 100vh;
+  background: #f6f7fb;
+  padding-bottom: 60rpx;
+}
+
+/* ===== 活动封面 ===== */
+.activity-cover {
+  width: 100%;
+  background: #eef1f6;
+  display: block;
+}
+
+/* ===== 活动信息卡片 ===== */
+.activity-info-card {
+  margin: 20rpx 24rpx 0;
+  padding: 28rpx 24rpx;
+  background: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(31, 45, 80, .06);
+}
+
+.activity-name {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1f2533;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.activity-sub {
+  font-size: 26rpx;
+  color: #9aa0af;
+}
+
+/* ===== 活动详情内容 ===== */
+.activity-content {
+  margin: 20rpx 24rpx 0;
+  padding: 28rpx 24rpx;
+  background: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(31, 45, 80, .06);
+}
+
+.content-rich {
+  font-size: 28rpx;
+  color: #333847;
+  line-height: 1.8;
+}
+
+/* ===== 加载中 ===== */
+.loading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 0;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #e5e7eb;
+  border-top-color: #1a9e6e;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  color: #9aa0af;
+}

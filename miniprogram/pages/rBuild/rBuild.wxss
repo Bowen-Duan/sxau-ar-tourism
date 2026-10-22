@@ -1,0 +1,203 @@
+/* 全局字体设置 */
+page, view, text, button, input, textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+}
+
+.page {
+  min-height: 100vh;
+  background: #f6f7fb;
+  padding-bottom: 60rpx;
+  box-sizing: border-box;
+}
+
+/* ===== 顶部建筑轮播 ===== */
+.hero-swiper {
+  width: 100%;
+  height: 560rpx;
+}
+
+.hero-img {
+  width: 100%;
+  height: 560rpx;
+  display: block;
+  background: #e6e9f0;
+}
+
+/* ===== 为您推荐横条 ===== */
+.recommend-bar {
+  display: flex;
+  align-items: center;
+  margin: 24rpx;
+  padding: 24rpx 28rpx;
+  background: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(31, 45, 80, .06);
+}
+
+.recommend-icon {
+  font-size: 32rpx;
+  margin-right: 12rpx;
+}
+
+.recommend-text {
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1a9e6e;
+}
+
+.recommend-arrow {
+  font-size: 36rpx;
+  color: #9aa0af;
+  font-weight: 300;
+}
+
+/* ===== 热剧游山农大 ===== */
+.video-section {
+  margin: 0 24rpx;
+}
+
+.video-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.video-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1f2533;
+}
+
+.video-more {
+  font-size: 26rpx;
+  color: #9aa0af;
+}
+
+.video-scroll {
+  white-space: nowrap;
+  width: 100%;
+}
+
+.video-card {
+  display: inline-flex;
+  flex-direction: column;
+  width: 320rpx;
+  margin-right: 20rpx;
+  vertical-align: top;
+  background: #ffffff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(31, 45, 80, .06);
+}
+
+.video-card:last-child {
+  margin-right: 0;
+}
+
+.video-cover {
+  width: 320rpx;
+  height: 180rpx;
+  background: #eef1f6;
+  display: block;
+}
+
+.video-info {
+  padding: 16rpx 20rpx 20rpx;
+}
+
+.video-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1f2533;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  margin-bottom: 6rpx;
+}
+
+.video-sub {
+  font-size: 24rpx;
+  color: #9aa0af;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.video-stats {
+  display: flex;
+  align-items: center;
+}
+
+.video-eye {
+  font-size: 24rpx;
+  margin-right: 6rpx;
+}
+
+.video-count {
+  font-size: 24rpx;
+  color: #9aa0af;
+}
+
+.video-empty {
+  display: inline-block;
+  padding: 40rpx 60rpx;
+  color: #9aa0af;
+  font-size: 26rpx;
+}
+
+/* ===== 功能入口（拍照识别 / 进入建筑可阅读） ===== */
+.entry {
+  position: relative;
+  margin: 36rpx 24rpx 0;
+  height: 300rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 10rpx 30rpx rgba(31, 45, 80, .1);
+}
+
+.entry-last {
+  margin-top: 20rpx;
+}
+
+.entry-img {
+  width: 100%;
+  height: 300rpx;
+  display: block;
+  background: #e6e9f0;
+}
+
+.entry-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 96rpx;
+  background: rgba(255, 255, 255, .96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.entry-icon {
+  font-size: 40rpx;
+  margin-right: 16rpx;
+}
+
+.entry-label {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #1f2533;
+  letter-spacing: 2rpx;
+}
+
+.entry-tip {
+  margin: 20rpx 36rpx 0;
+  font-size: 24rpx;
+  color: #9aa0af;
+  line-height: 1.6;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>山西农业大学VR全景</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { overflow: hidden; background: #000; font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif; }
+  .container { width: 100vw; height: 100vh; position: relative; }
+  .scene { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; }
+  .scene.active { display: block; }
+  .scene img { width: 100%; height: 100%; object-fit: cover; }
+  .scene-name { position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 24px; font-weight: 600; text-shadow: 0 2px 10px rgba(0,0,0,0.5); z-index: 10; }
+  .loading { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 18px; z-index: 20; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="loading" id="loading">加载中...</div>
+  
+  <div class="scene active" id="scene0">
+    <img src="https://picsum.photos/1920/1080?random=1" alt="亭兰图书楼">
+    <div class="scene-name">亭兰图书楼</div>
+  </div>
+  
+  <div class="scene" id="scene1">
+    <img src="https://picsum.photos/1920/1080?random=2" alt="韩氏楼">
+    <div class="scene-name">韩氏楼</div>
+  </div>
+  
+  <div class="scene" id="scene2">
+    <img src="https://picsum.photos/1920/1080?random=3" alt="铭贤学校旧址">
+    <div class="scene-name">铭贤学校旧址</div>
+  </div>
+  
+  <div class="scene" id="scene3">
+    <img src="https://picsum.photos/1920/1080?random=4" alt="杭氏楼">
+    <div class="scene-name">杭氏楼</div>
+  </div>
+</div>
+
+<script>
+  // 接收小程序传来的场景参数
+  const params = new URLSearchParams(window.location.search);
+  const scene = params.get('scene') || 0;
+  
+  // 切换场景
+  function switchScene(n) {
+    document.querySelectorAll('.scene').forEach((s, i) => {
+      s.classList.toggle('active', i === n);
+    });
+  }
+  
+  // 初始化
+  window.onload = function() {
+    document.getElementById('loading').style.display = 'none';
+    switchScene(parseInt(scene));
+  };
+  
+  // 接收小程序的消息
+  document.addEventListener('message', function(e) {
+    if (e.data && e.data.type === 'switchScene') {
+      switchScene(e.data.index);
+    }
+  });
+</script>
+</body>
+</html>

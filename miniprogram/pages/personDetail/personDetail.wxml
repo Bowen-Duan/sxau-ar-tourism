@@ -1,0 +1,30 @@
+<!--pages/personDetail/personDetail.wxml-->
+<view class="person-detail">
+  <!-- 顶部背景 -->
+  <view class="hero">
+    <image class="hero-bg" src="{{person.photo}}" mode="aspectFill" binderror="onPhotoError" />
+    <view class="hero-mask"></view>
+  </view>
+
+  <!-- 人物信息卡片 -->
+  <view class="info-card">
+    <image class="avatar" src="{{person.photo}}" mode="aspectFill" binderror="onPhotoError" />
+    <view class="name-box">
+      <text class="name">{{person.name}}</text>
+      <text wx:if="{{person.date}}" class="dates">{{person.date}}</text>
+    </view>
+  </view>
+
+  <!-- 生平简介 -->
+  <view wx:if="{{person.content}}" class="section-card">
+    <view class="section-title">
+      <view class="title-bar"></view>
+      <text class="title-text">生平简介</text>
+    </view>
+    <view class="content">
+      <rich-text nodes="{{person.content}}"></rich-text>
+    </view>
+  </view>
+
+  <view class="bottom-space"></view>
+</view>

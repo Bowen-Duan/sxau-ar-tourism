@@ -1,0 +1,55 @@
+<view class="page">
+  <!-- 开屏动画遮罩层 -->
+  <view class="splash-screen" wx:if="{{showSplash}}">
+    <view class="splash-circle">
+      <image 
+        wx:if="{{splashImage}}" 
+        class="splash-image" 
+        src="{{splashImage}}" 
+        mode="aspectFill"
+        bindload="onSplashImageLoad"
+      />
+      <view wx:else class="splash-loading">
+        <view class="splash-spinner"></view>
+      </view>
+    </view>
+    <text class="splash-text">建筑可阅读</text>
+  </view>
+
+  <!-- 全屏轮播背景 -->
+  <swiper
+    wx:if="{{slides.length}}"
+    class="bg-swiper"
+    autoplay="{{autoplay}}"
+    circular
+    interval="3000"
+    duration="600"
+  >
+    <swiper-item wx:for="{{slides}}" wx:key="key">
+      <image class="bg-img" src="{{item.pictureUrl}}" mode="aspectFill" bindload="onSlideImageLoad" />
+    </swiper-item>
+  </swiper>
+
+  <!-- 加载失败重试 -->
+  <view wx:elif="{{!loading}}" class="retry" bindtap="reload">
+    <text>轮播图加载失败</text>
+    <text wx:if="{{errorMsg}}" class="retry-tip">{{errorMsg}}</text>
+    <text class="retry-tip">点击重试</text>
+  </view>
+
+  <!-- 渐变遮罩，保证文字可读 -->
+  <view class="mask"></view>
+
+  <!-- 品牌标题 -->
+  <view class="brand" style="padding-top:{{navBarHeight}}px">
+    <text class="brand-title">建筑可阅读</text>
+  </view>
+
+  <!-- 开始探索（页面正中间）+ 校名 -->
+  <view class="center">
+    <button class="start-btn" bindtap="startExplore">开始探索</button>
+    <text class="school-name">山西农业大学</text>
+  </view>
+
+  <loading visible="{{loading}}" text="加载轮播图…" />
+</view>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "建筑可阅读",
+  "usingComponents": {
+    "loading": "/components/loading/loading"
+  }
+}

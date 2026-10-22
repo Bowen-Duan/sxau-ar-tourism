@@ -1,0 +1,55 @@
+<view class="page">
+  <!-- 视频播放器 -->
+  <video
+    class="video-player"
+    src="{{currentVideo.video}}"
+    poster="{{currentVideo.cover}}"
+    controls
+    show-fullscreen-btn
+    show-play-btn
+    show-center-play-btn
+    enable-progress-gesture
+    object-fit="contain"
+    autoplay
+  ></video>
+
+  <!-- 视频信息 -->
+  <view class="video-info">
+    <text class="video-title">{{currentVideo.name}}</text>
+    <text class="video-sub">{{currentVideo.tittle}}</text>
+    <view class="video-stats">
+      <text class="eye-icon">👁</text>
+      <text class="view-count">{{currentVideo.count || 0}}</text>
+    </view>
+  </view>
+
+  <!-- 更多精彩内容 -->
+  <view class="more-section" wx:if="{{otherVideos.length > 0}}">
+    <text class="more-title">更多精彩内容 ›</text>
+    <scroll-view class="more-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view
+        class="more-card"
+        wx:for="{{otherVideos}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="switchVideo"
+      >
+        <image class="more-cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
+        <view class="more-info">
+          <text class="more-name">{{item.name}}</text>
+          <text class="more-sub">{{item.tittle}}</text>
+          <view class="more-stats">
+            <text class="eye-icon">👁</text>
+            <text class="view-count">{{item.count || 0}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

@@ -1,0 +1,27 @@
+<!--pages/vr/vr.wxml-->
+<view class="vr-page">
+  <web-view wx:if="{{vrUrl}}" src="{{vrUrl}}" bindload="handleLoad" binderror="handleError"></web-view>
+
+  <cover-view class="custom-nav" style="padding-top:{{statusBarHeight}}px;height:{{navBarHeight}}px">
+    <cover-view class="nav-back" bindtap="goBack">‹</cover-view>
+    <cover-view class="nav-copy">
+      <cover-view class="nav-title">{{title}}</cover-view>
+      <cover-view class="nav-subtitle">VR 全景导览</cover-view>
+    </cover-view>
+    <cover-view class="nav-space"></cover-view>
+  </cover-view>
+
+  <cover-view wx:if="{{loading}}" class="state-layer">
+    <cover-view class="loading-ring"></cover-view>
+    <cover-view class="state-title">正在进入全景</cover-view>
+    <cover-view class="state-tip">请稍候，正在加载场景资源</cover-view>
+  </cover-view>
+
+  <cover-view wx:if="{{failed}}" class="state-layer failed-layer">
+    <cover-view class="error-mark">!</cover-view>
+    <cover-view class="state-title">全景暂时无法打开</cover-view>
+    <cover-view class="state-tip">请检查网络后重试，或稍后再来</cover-view>
+    <cover-view class="retry-btn" bindtap="retry">重新加载</cover-view>
+    <cover-view class="back-link" bindtap="goBack">返回建筑详情</cover-view>
+  </cover-view>
+</view>

@@ -1,0 +1,76 @@
+<view class="page">
+  <!-- 顶部标题 -->
+  <view class="header">
+    <view class="header-title">建筑可阅读</view>
+  </view>
+
+  <!-- 搜索框：左边定位 + 中间输入 + 右边搜索按钮 -->
+  <view class="search-bar">
+    <view class="near-btn {{nearMode ? 'on' : ''}}" bindtap="switchNear">
+      <view class="near-dot"></view>
+      <text class="near-text">离我最近</text>
+    </view>
+    <input
+      class="search-input"
+      placeholder="请输入关键字搜索建筑"
+      placeholder-class="search-ph"
+      value="{{keyword}}"
+      confirm-type="search"
+      bindinput="onKeywordInput"
+      bindconfirm="doSearch"
+    />
+    <view wx:if="{{keyword}}" class="search-clear" bindtap="clearSearch">×</view>
+    <view class="search-btn" bindtap="doSearch">搜索</view>
+  </view>
+
+  <!-- 分类 tab -->
+  <scroll-view class="tabs" scroll-x enhanced show-scrollbar="{{false}}">
+    <view
+      class="tab {{(!isSearch && !nearMode && activeTypeId === -1) ? 'on' : ''}}"
+      data-id="-1"
+      data-name="全部"
+      bindtap="switchCategory"
+    >全部</view>
+    <view
+      wx:for="{{categories}}"
+      wx:key="id"
+      class="tab {{(!isSearch && !nearMode && activeTypeId === item.id) ? 'on' : ''}}"
+      data-id="{{item.id}}"
+      data-name="{{item.name}}"
+      bindtap="switchCategory"
+    >{{item.name}}</view>
+  </scroll-view>
+
+  <!-- 建筑卡片：CSS columns 瀑布流两列 -->
+  <view class="grid" wx:if="{{list.length}}">
+    <view
+      class="card"
+      wx:for="{{list}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="goDetail"
+    >
+      <view class="img-wrap">
+        <image class="card-img" src="{{item._img}}" mode="aspectFill"></image>
+        <view class="vr-tag" wx:if="{{item.isVr === 1}}">VR</view>
+      </view>
+      <view class="card-name">{{item.name}}</view>
+      <view class="card-en">{{item.englishName}}</view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:elif="{{loaded && !loading}}">
+    <view class="empty-icon">
+      <view class="empty-pin"></view>
+    </view>
+    <view class="empty-text">{{isSearch ? '没有找到相关建筑' : (nearMode ? '附近暂无已收录的建筑' : '该分类下暂无建筑')}}</view>
+    <view class="empty-sub" wx:if="{{nearMode}}">请确认已走到校园建筑附近，或返回全部查看</view>
+  </view>
+
+  <!-- 底部加载状态 -->
+  <view class="list-footer" wx:if="{{list.length}}">
+    <text wx:if="{{loading}}">加载中…</text>
+    <text wx:elif="{{!hasMore}}">— 我是有底线滴 —</text>
+  </view>
+</view>

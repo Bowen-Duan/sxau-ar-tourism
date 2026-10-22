@@ -1,0 +1,173 @@
+<!--pages/detail/detail.wxml 按设计稿重写：沉浸式头图 + 白色圆角卡片 + 金色音频面板-->
+<view class="detail-page {{showAudioPanel ? 'has-audio-panel' : ''}}">
+
+  <!-- 加载中 -->
+  <view wx:if="{{loading}}" class="loading-box">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 加载失败 -->
+  <view wx:if="{{!loading && errorMsg}}" class="error-box">
+    <text class="error-icon">😔</text>
+    <text class="error-text">{{errorMsg}}</text>
+    <button class="retry-btn" bindtap="retry">重新加载</button>
+  </view>
+
+  <!-- 详情内容 -->
+  <block wx:if="{{!loading && !errorMsg && spot}}">
+
+    <!-- 顶部大图（沉浸式，延伸到状态栏） -->
+    <view class="hero-section">
+      <swiper class="hero-swiper" indicator-dots="{{bannerList.length > 1}}" autoplay circular interval="4000" duration="600" indicator-color="rgba(255,255,255,0.4)" indicator-active-color="#ffffff">
+        <swiper-item wx:for="{{bannerList}}" wx:key="*this">
+          <image class="hero-img" src="{{item}}" mode="aspectFill" binderror="onImageError" />
+        </swiper-item>
+      </swiper>
+      <!-- 顶部渐变遮罩 -->
+      <view class="hero-top-mask"></view>
+      <!-- 半透明返回按钮 -->
+      <view class="nav-back" style="top: {{statusBarHeight + 8}}px" bindtap="goBack">
+        <text class="nav-back-icon">‹</text>
+      </view>
+    </view>
+
+    <!-- 白色圆角信息卡片（悬浮于图片上） -->
+    <view class="info-card">
+      <!-- 中文标题 + 英文标题 -->
+      <view class="title-section">
+        <text class="spot-name">{{spot.name}}</text>
+        <text class="spot-en">{{spot.englishName || 'Historic Building'}}</text>
+      </view>
+
+      <!-- 三个功能按钮：语音导览 / VR漫游 / 景点导航 -->
+      <view class="action-row">
+        <view class="action-item" bindtap="playAudio">
+          <view class="action-circle {{isPlaying ? 'playing' : ''}}">
+            <view class="line-icon headphone {{isPlaying ? 'active' : ''}}">
+              <view class="gh-arc"></view>
+              <view class="gh-ear-l"></view>
+              <view class="gh-ear-r"></view>
+            </view>
+          </view>
+          <text class="action-text">{{lang === 'zh' ? '语音导览' : 'Audio'}}</text>
+        </view>
+        <view class="action-item" bindtap="goVr">
+          <view class="action-circle">
+            <view class="line-icon globe">
+              <view class="gg-circle"></view>
+              <view class="gg-horiz"></view>
+              <view class="gg-vert"></view>
+            </view>
+          </view>
+          <text class="action-text">{{lang === 'zh' ? 'VR漫游' : 'VR Tour'}}</text>
+        </view>
+        <view class="action-item" bindtap="toggleMap">
+          <view class="action-circle {{showMap ? 'active' : ''}}">
+            <view class="line-icon location">
+              <view class="lg-pin"></view>
+              <view class="lg-dot"></view>
+            </view>
+          </view>
+          <text class="action-text">{{lang === 'zh' ? '景点导航' : 'Map'}}</text>
+        </view>
+      </view>
+
+      <!-- 中/EN 语言切换（右对齐） -->
+      <view class="lang-switch-row">
+        <view class="lang-switch" bindtap="toggleLang">
+          <text class="lang-btn {{lang === 'zh' ? 'active' : ''}}">中</text>
+          <text class="lang-btn {{lang === 'en' ? 'active' : ''}}">EN</text>
+        </view>
+      </view>
+
+      <!-- 内嵌地图（景点导航展开） -->
+      <view wx:if="{{showMap}}" class="map-section">
+        <view class="map-header">
+          <text class="map-title">{{lang === 'zh' ? '景点位置' : 'Location'}}</text>
+          <view class="map-close" bindtap="toggleMap">
+            <text class="close-icon">✕</text>
+          </view>
+        </view>
+        <map
+          class="spot-map"
+          id="spotMap"
+          longitude="{{mapLongitude}}"
+          latitude="{{mapLatitude}}"
+          scale="{{mapScale}}"
+          markers="{{mapMarkers}}"
+          circles="{{mapCircles}}"
+          show-location="{{true}}"
+          enable-zoom="{{true}}"
+          enable-scroll="{{true}}"
+        ></map>
+        <view class="map-info">
+          <text class="map-name">{{spot.name}}</text>
+          <text wx:if="{{addressText}}" class="map-address">{{addressText}}</text>
+          <view class="map-actions">
+            <view class="map-btn" bindtap="zoomInMap">
+              <text>➕</text>
+            </view>
+            <view class="map-btn" bindtap="zoomOutMap">
+              <text>➖</text>
+            </view>
+            <view class="map-btn primary" bindtap="openInWechatMap">
+              <text>🧭 导航</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 基本信息：保护级别 / 建筑地址 -->
+      <view class="info-section" wx:if="{{spot.level || addressText}}">
+        <view class="info-row" wx:if="{{spot.level}}">
+          <text class="info-label">{{lang === 'zh' ? '保护级别' : 'Level'}}</text>
+          <text class="info-value">{{spot.level}}</text>
+        </view>
+        <view class="info-row" wx:if="{{addressText}}">
+          <text class="info-label">{{lang === 'zh' ? '建筑地址' : 'Address'}}</text>
+          <text class="info-value">{{addressText}}</text>
+        </view>
+      </view>
+
+      <!-- 历史人物（入口保持不变） -->
+      <view wx:if="{{personList.length > 0}}" class="person-section">
+        <text class="person-title">{{lang === 'zh' ? '历史人物' : 'Figures'}}</text>
+        <view class="person-avatar-list">
+          <view class="person-avatar-item" wx:for="{{personList}}" wx:key="index" data-index="{{index}}" bindtap="goPersonDetail">
+            <view class="person-avatar-circle">
+              <image class="person-avatar-img" src="{{item.photo}}" mode="aspectFill" data-index="{{index}}" binderror="onPersonImageError" />
+            </view>
+            <text class="person-avatar-name">{{item.name}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 建筑介绍（富文本） -->
+      <view wx:if="{{hasContent}}" class="content-section">
+        <rich-text class="rich-content" nodes="{{currentContent}}"></rich-text>
+      </view>
+    </view>
+
+    <!-- 底部留白 -->
+    <view class="bottom-space"></view>
+
+    <!-- 底部音频面板（金色渐变） -->
+    <view wx:if="{{showAudioPanel}}" class="audio-panel">
+      <view class="audio-panel-header">
+        <text class="audio-panel-title">{{lang === 'zh' ? '音频列表' : 'Audio List'}}</text>
+        <view class="audio-panel-close" bindtap="closeAudioPanel">
+          <text class="audio-panel-close-icon">✕</text>
+        </view>
+      </view>
+      <view class="audio-item">
+        <view class="audio-item-info">
+          <text class="audio-item-name">{{audioFileName || audioTitle}}</text>
+        </view>
+        <view class="audio-item-toggle" bindtap="toggleAudioPlay">
+          <text class="audio-item-toggle-icon">{{isPlaying ? '⏸' : '▶'}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

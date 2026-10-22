@@ -1,0 +1,39 @@
+<view class="page">
+  <!-- 页面标题 -->
+  <view class="header">
+    <text class="header-title">热剧游山农大</text>
+    <text class="header-sub">精选校园视频，带你了解山西农业大学</text>
+  </view>
+
+  <!-- 视频列表 -->
+  <view class="video-list" wx:if="{{videos.length > 0}}">
+    <view
+      class="video-item"
+      wx:for="{{videos}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="goVideoDetail"
+    >
+      <image class="video-cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
+      <view class="video-info">
+        <text class="video-name">{{item.name}}</text>
+        <text class="video-sub">{{item.tittle}}</text>
+        <view class="video-stats">
+          <text class="play-icon">▶</text>
+          <text class="view-count">{{item.count || 0}}次播放</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-wrap" wx:if="{{!loading && videos.length === 0}}">
+    <text class="empty-text">暂无视频</text>
+  </view>
+</view>

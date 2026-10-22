@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/rBuild/rBuild",
+    "pages/buildList/buildList",
+    "pages/scan/scan",
+    "pages/rFail/rFail",
+    "pages/detail/detail",
+    "pages/recognition/recognition",
+    "pages/personDetail/personDetail",
+    "pages/vr/vr",
+    "pages/videoList/videoList",
+    "pages/videoDetails/videoDetails",
+    "pages/activity/activity",
+    "pages/activityDetail/activityDetail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#f6f7fb",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "小程序框架示例",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于识别你附近1公里内的建筑"
+    }
+  },
+  "requiredPrivateInfos": ["getLocation"]
+}

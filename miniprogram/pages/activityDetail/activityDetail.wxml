@@ -1,0 +1,21 @@
+<view class="page">
+  <!-- 活动封面 -->
+  <image class="activity-cover" src="{{activity.background}}" mode="widthFix" lazy-load />
+
+  <!-- 活动信息卡片 -->
+  <view class="activity-info-card">
+    <text class="activity-name">{{activity.name}}</text>
+    <text class="activity-sub">{{activity.englishName || activity.name}}</text>
+  </view>
+
+  <!-- 活动详情内容（富文本） -->
+  <view class="activity-content" wx:if="{{activity.content}}">
+    <rich-text class="content-rich" nodes="{{activity.content}}"></rich-text>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

@@ -1,0 +1,121 @@
+/* pages/vr/vr.wxss */
+.vr-page {
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  position: relative;
+}
+
+/* 自定义导航栏 */
+.custom-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-sizing: content-box;
+  background: rgba(10, 13, 18, 0.82);
+  display: flex;
+  align-items: center;
+  z-index: 999;
+}
+
+.nav-back {
+  width: 80rpx;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 48rpx;
+  font-weight: 300;
+}
+
+.nav-copy {
+  flex: 1;
+  text-align: center;
+}
+
+.nav-title {
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  line-height: 40rpx;
+}
+
+.nav-subtitle {
+  color: rgba(255, 255, 255, .62);
+  font-size: 20rpx;
+  line-height: 26rpx;
+}
+
+.nav-space {
+  width: 80rpx;
+}
+
+.state-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 800;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0a0d12;
+  color: #fff;
+}
+
+.loading-ring {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  border: 6rpx solid rgba(255, 255, 255, .18);
+  border-top-color: #c8a96e;
+  animation: spin .9s linear infinite;
+}
+
+.state-title {
+  margin-top: 34rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+}
+
+.state-tip {
+  margin-top: 14rpx;
+  color: rgba(255, 255, 255, .58);
+  font-size: 24rpx;
+}
+
+.error-mark {
+  width: 76rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  text-align: center;
+  border-radius: 50%;
+  color: #0a0d12;
+  background: #c8a96e;
+  font-size: 42rpx;
+  font-weight: 700;
+}
+
+.retry-btn {
+  margin-top: 44rpx;
+  width: 280rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  color: #17191d;
+  background: #c8a96e;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.back-link {
+  margin-top: 28rpx;
+  color: rgba(255, 255, 255, .72);
+  font-size: 26rpx;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

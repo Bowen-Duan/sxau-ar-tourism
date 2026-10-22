@@ -1,0 +1,41 @@
+<top-bar title="识别库" show-back="{{true}}" />
+
+<view class="page">
+  <!-- 标签筛选：全部 / 景点 / 文创 -->
+  <view class="tag-bar">
+    <view
+      wx:for="{{tags}}"
+      wx:key="label"
+      class="tag-item {{activeTag === item.value ? 'tag-active' : ''}}"
+      data-value="{{item.value}}"
+      bindtap="switchTag"
+    >{{item.label}}</view>
+  </view>
+
+  <!-- 识别库图片网格 -->
+  <view wx:if="{{list.length}}" class="grid">
+    <view
+      wx:for="{{list}}"
+      wx:key="id"
+      class="card"
+      data-url="{{item.url}}"
+      bindtap="preview"
+    >
+      <image class="card-img" src="{{item.url}}" mode="aspectFill" lazy-load />
+      <text class="card-name">{{item.filename}}</text>
+      <view class="card-meta">
+        <text class="badge {{item.tag == 1 ? 'badge-scenic' : 'badge-ip'}}">{{item.tag == 1 ? '景点' : '文创'}}</text>
+        <text class="badge {{item.source == 2 ? 'badge-official' : 'badge-user'}}">{{item.source == 2 ? '官方' : '用户'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空数据 -->
+  <view wx:elif="{{!loading}}" class="empty">
+    <text>识别库暂无图片</text>
+    <text wx:if="{{errorMsg}}" class="empty-tip">{{errorMsg}}</text>
+    <text class="empty-tip" bindtap="reload">点击重试</text>
+  </view>
+
+  <loading visible="{{loading}}" text="加载识别库…" />
+</view>

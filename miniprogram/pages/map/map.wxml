@@ -1,0 +1,54 @@
+<!--pages/map/map.wxml-->
+<view class="map-page">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <view class="back-btn" bindtap="goBack">
+      <text class="back-icon">‹</text>
+    </view>
+    <text class="nav-title">{{spotName || '景点位置'}}</text>
+    <view class="nav-placeholder"></view>
+  </view>
+
+  <!-- 地图 -->
+  <map
+    class="map"
+    id="spotMap"
+    longitude="{{longitude}}"
+    latitude="{{latitude}}"
+    scale="{{scale}}"
+    markers="{{markers}}"
+    show-location="{{true}}"
+    enable-zoom="{{true}}"
+    enable-scroll="{{true}}"
+    enable-rotate="{{false}}"
+    enable-3D="{{false}}"
+    bindmarkertap="onMarkerTap"
+  ></map>
+
+  <!-- 底部信息卡片 -->
+  <view class="info-card">
+    <view class="info-header">
+      <view class="info-title-box">
+        <text class="info-title">{{spotName}}</text>
+        <text wx:if="{{spotAddress}}" class="info-address">{{spotAddress}}</text>
+      </view>
+      <view class="distance-box" wx:if="{{distance}}">
+        <text class="distance-text">{{distance}}</text>
+      </view>
+    </view>
+    <view class="info-actions">
+      <view class="action-btn primary" bindtap="openInMap">
+        <text class="action-icon">🧭</text>
+        <text class="action-text">导航</text>
+      </view>
+      <view class="action-btn" bindtap="zoomIn">
+        <text class="action-icon">➕</text>
+        <text class="action-text">放大</text>
+      </view>
+      <view class="action-btn" bindtap="zoomOut">
+        <text class="action-icon">➖</text>
+        <text class="action-text">缩小</text>
+      </view>
+    </view>
+  </view>
+</view>

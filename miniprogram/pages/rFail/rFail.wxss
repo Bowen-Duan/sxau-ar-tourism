@@ -1,0 +1,136 @@
+/* 全局字体设置 */
+page, view, text, button, input, textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+}
+
+.page {
+  min-height: 100vh;
+  background: #f4f6f8;
+  padding: 60rpx 40rpx 40rpx;
+  box-sizing: border-box;
+}
+
+/* 失败图标 */
+.fail-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30rpx;
+}
+.fail-circle {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: #fff0f0;
+  border: 4rpx solid #ff6b6b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fail-mark {
+  font-size: 60rpx;
+  font-weight: 700;
+  color: #ff6b6b;
+}
+
+/* 提示语 */
+.fail-title {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1f2329;
+  margin-bottom: 12rpx;
+}
+.fail-sub {
+  text-align: center;
+  font-size: 26rpx;
+  color: #8a8f99;
+  margin-bottom: 40rpx;
+}
+
+/* 推荐列表 */
+.recommend-list {
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin-bottom: 40rpx;
+}
+.rec-card {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #f0f1f3;
+}
+.rec-card:last-child {
+  border-bottom: none;
+}
+.rec-img {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 14rpx;
+  background: #eceff2;
+  flex-shrink: 0;
+}
+.rec-info {
+  flex: 1;
+  margin-left: 24rpx;
+  min-width: 0;
+}
+.rec-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1f2329;
+  margin-bottom: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rec-en {
+  font-size: 22rpx;
+  color: #9aa0a8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rec-arrow {
+  font-size: 40rpx;
+  color: #c0c4cc;
+  margin-left: 16rpx;
+}
+
+/* 空状态 */
+.empty {
+  text-align: center;
+  padding: 80rpx 0;
+  color: #a6abb2;
+  font-size: 26rpx;
+}
+
+/* 按钮组 */
+.btn-group {
+  display: flex;
+  gap: 24rpx;
+  margin-top: 20rpx;
+}
+.btn-primary {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #1a9e6e;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  border-radius: 44rpx;
+}
+.btn-secondary {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #fff;
+  color: #1a9e6e;
+  font-size: 30rpx;
+  font-weight: 600;
+  border-radius: 44rpx;
+  border: 2rpx solid #1a9e6e;
+}

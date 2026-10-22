@@ -1,0 +1,152 @@
+/* 全局字体设置 */
+page, view, text, button, input, textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+}
+
+.page {
+  min-height: 100vh;
+  background: #f6f7fb;
+}
+
+/* ===== 视频播放器 ===== */
+.video-player {
+  width: 100%;
+  height: 420rpx;
+  background: #000000;
+}
+
+/* ===== 视频信息 ===== */
+.video-info {
+  padding: 24rpx 28rpx;
+  background: #ffffff;
+}
+
+.video-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1f2533;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.video-sub {
+  font-size: 26rpx;
+  color: #9aa0af;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.video-stats {
+  display: flex;
+  align-items: center;
+}
+
+.eye-icon {
+  font-size: 24rpx;
+  margin-right: 8rpx;
+}
+
+.view-count {
+  font-size: 24rpx;
+  color: #9aa0af;
+}
+
+/* ===== 更多精彩内容 ===== */
+.more-section {
+  margin-top: 20rpx;
+  padding: 24rpx 28rpx;
+  background: #ffffff;
+}
+
+.more-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1f2533;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.more-scroll {
+  white-space: nowrap;
+  width: 100%;
+}
+
+.more-card {
+  display: inline-flex;
+  flex-direction: column;
+  width: 280rpx;
+  margin-right: 20rpx;
+  vertical-align: top;
+  background: #f8f9fc;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.more-card:last-child {
+  margin-right: 0;
+}
+
+.more-cover {
+  width: 280rpx;
+  height: 160rpx;
+  background: #eef1f6;
+  display: block;
+}
+
+.more-info {
+  padding: 16rpx 20rpx 20rpx;
+}
+
+.more-name {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #1f2533;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  margin-bottom: 6rpx;
+}
+
+.more-sub {
+  font-size: 22rpx;
+  color: #9aa0af;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.more-stats {
+  display: flex;
+  align-items: center;
+}
+
+/* ===== 加载中 ===== */
+.loading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 0;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #e5e7eb;
+  border-top-color: #1a9e6e;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  color: #9aa0af;
+}

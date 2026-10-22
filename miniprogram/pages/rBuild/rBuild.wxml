@@ -1,0 +1,67 @@
+<view class="page">
+  <!-- 顶部建筑轮播 -->
+  <swiper
+    class="hero-swiper"
+    autoplay
+    circular
+    interval="3500"
+    duration="600"
+  >
+    <swiper-item wx:for="{{buildings}}" wx:key="key">
+      <image class="hero-img" src="{{item.pictureUrl}}" mode="aspectFill" binderror="onMediaError" />
+    </swiper-item>
+  </swiper>
+
+  <!-- 为您推荐 · 酷跑活动 -->
+  <view class="recommend-bar" bindtap="goActivityList">
+    <text class="recommend-icon">📢</text>
+    <text class="recommend-text">为您推荐 | 酷跑活动</text>
+    <text class="recommend-arrow">›</text>
+  </view>
+
+  <!-- 热剧游山农大 -->
+  <view class="video-section">
+    <view class="video-header">
+      <text class="video-title">热剧游山农大</text>
+      <text class="video-more" bindtap="goVideoList">查看全部 ›</text>
+    </view>
+
+    <scroll-view class="video-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="video-card" wx:for="{{videos}}" wx:key="id" data-id="{{item.id}}" bindtap="goVideo">
+        <image class="video-cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
+        <view class="video-info">
+          <text class="video-name">{{item.name}}</text>
+          <text class="video-sub">{{item.tittle || item.content || ''}}</text>
+          <view class="video-stats">
+            <text class="video-eye">👁</text>
+            <text class="video-count">{{item.count || 0}}</text>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{!videos.length && !loading}}" class="video-empty">
+        暂无视频
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 拍照识别入口 -->
+  <view class="entry" bindtap="goScan">
+    <image class="entry-img" src="{{scanImg}}" mode="aspectFill" binderror="onMediaError" />
+    <view class="entry-bar">
+      <text class="entry-icon">📷</text>
+      <text class="entry-label">拍照识别</text>
+    </view>
+  </view>
+  <view class="entry-tip">拍照时请放大单个建筑或建筑门牌、铜牌、相关文创产品也行哟！</view>
+
+  <!-- 进入建筑可阅读入口 -->
+  <view class="entry entry-last" bindtap="goMuseum">
+    <image class="entry-img" src="{{museumImg}}" mode="aspectFill" binderror="onMediaError" />
+    <view class="entry-bar">
+      <text class="entry-icon">🏛</text>
+      <text class="entry-label">进入建筑可阅读</text>
+    </view>
+  </view>
+
+  <loading visible="{{loading}}" text="加载中…" />
+</view>
