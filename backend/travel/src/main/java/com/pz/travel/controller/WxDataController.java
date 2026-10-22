@@ -7,6 +7,7 @@ import com.pz.travel.common.CommonResult;
 import com.pz.travel.config.WxMaConfiguration;
 import com.pz.travel.config.WxMaProperties;
 import com.pz.travel.domain.WxData;
+import com.pz.travel.domain.vo.TravelDailyTrendVo;
 import com.pz.travel.domain.vo.TravelStatisticsBaseVo;
 import com.pz.travel.mapper.WxDataMapper;
 
@@ -165,6 +166,28 @@ public class WxDataController extends BaseController {
     @GetMapping("/viewSource")
     public CommonResult<List<WxData>> selectViewSourceStats() {
         return CommonResult.success().setResult(wxDataMapper.selectViewSourceStats());
+    }
+
+    /**
+     * 每日趋势统计（最近 N 天：建筑浏览 / 识别 / VR 查看）
+     *
+     * @param days 天数，默认 14
+     * @return
+     */
+    @GetMapping("/trend")
+    public CommonResult<List<TravelDailyTrendVo>> selectDailyTrend(@RequestParam(defaultValue = "14") Integer days) {
+        return CommonResult.success().setResult(wxDataMapper.selectDailyTrend(days));
+    }
+
+    /**
+     * 建筑点赞排行
+     *
+     * @param limit 返回条数
+     * @return
+     */
+    @GetMapping("/likeRank")
+    public CommonResult<List<WxData>> selectLikeRank(@RequestParam(defaultValue = "10") Integer limit) {
+        return CommonResult.success().setResult(wxDataMapper.selectLikeRank(limit));
     }
 
 //

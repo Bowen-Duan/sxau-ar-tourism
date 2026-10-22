@@ -1,6 +1,7 @@
 package com.pz.travel.mapper;
 
 import com.pz.travel.domain.WxData;
+import com.pz.travel.domain.vo.TravelDailyTrendVo;
 import com.pz.travel.domain.vo.TravelStatisticsBaseVo;
 import org.apache.ibatis.annotations.Param;
 
@@ -25,4 +26,8 @@ public interface WxDataMapper {
     List<WxData> selectScenicSourceStats(@Param("eventType") Integer eventType);
 
     List<WxData> selectViewSourceStats();
+
+    List<TravelDailyTrendVo> selectDailyTrend(@Param("days") Integer days);
+
+    List<WxData> selectLikeRank(@Param("limit") Integer limit);
 }

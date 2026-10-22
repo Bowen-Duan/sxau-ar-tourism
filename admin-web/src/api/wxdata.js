@@ -78,3 +78,32 @@ export function getHotRank(params) {
     params
   })
 }
+
+/**
+ * 获取最近 N 天的每日趋势（浏览 / 识别 / VR 查看）。
+ * GET /wxdata/trend
+ * @param {Object} [params] 查询参数。
+ * @param {number} [params.days=14] 天数，默认 14 天。
+ * @returns {Promise} response.data 为趋势数组，元素包含 date、viewCount、recognitionCount、vrCount。
+ */
+export function getDailyTrend(params) {
+  return request({
+    url: '/wxdata/trend',
+    method: 'get',
+    params
+  })
+}
+
+/**
+ * 获取建筑点赞排行。
+ * GET /wxdata/likeRank
+ * @param {WxRankQueryParams} [params] 查询参数。
+ * @returns {Promise} response.data 为 {@link WxRankItem} 数组，按建筑点赞数排行。
+ */
+export function getLikeRank(params) {
+  return request({
+    url: '/wxdata/likeRank',
+    method: 'get',
+    params
+  })
+}

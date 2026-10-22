@@ -128,4 +128,26 @@ GROUP BY
         group by ifnull(nullif(source, ''), 'unknown')
         order by value desc
     </select>
+    <select id="selectDailyTrend" resultType="com.pz.travel.domain.vo.TravelDailyTrendVo">
+        select
+            DATE_FORMAT(a.dates, '%Y-%m-%d') as date,
+            sum(case when a.event_type = 1 or a.event_type is null then 1 else 0 end) as viewCount,
+            sum(case when a.event_type = 2 then 1 else 0 end) as recognitionCount,
+            sum(case when a.event_type = 3 then 1 else 0 end) as vrCount
+        from travel_scenic_view a
+        where a.dates &gt;= DATE_SUB(CURDATE(), INTERVAL #{days} DAY)
+        group by DATE_FORMAT(a.dates, '%Y-%m-%d')
+        order by date asc
+    </select>
+
+    <select id="selectLikeRank" resultType="com.pz.travel.domain.WxData">
+        select
+            name as name,
+            likes as value
+        from travel_module_detail
+        where deleted != 1
+        order by likes desc
+        limit #{limit}
+    </select>
+
 </mapper>
