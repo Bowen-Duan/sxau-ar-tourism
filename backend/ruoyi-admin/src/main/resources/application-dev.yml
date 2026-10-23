@@ -21,36 +21,36 @@ wx:
   miniapp:
     configs:
       - appid: wx6caa96169ec9f475
-        secret: 6473dfa4ede67e53f7e98ba35632a45a
-        token: pengzhuang2020
-        aesKey: Khi7UH5U3RPL7emOsPLv1S1JyWR4R3vCl1WqXr0ByjO
+        secret: ${WX_MINIAPP_SECRET:}
+        token: ${WX_MINIAPP_TOKEN:}
+        aesKey: ${WX_MINIAPP_AES_KEY:}
         msgDataFormat: JSON
   mp:
     useRedis: true
     configs:
       - appId: wxc2bbb6696a04ecd2 # 第一个公众号的appid
-        secret: 099f538d0df6cdc820a8f0926c9a1c4d # 公众号的appsecret
+        secret: ${WX_MP_SECRET:} # 公众号的appsecret
         token: test # 接口配置里的Token值
         aesKey: test # 接口配置里的EncodingAESKey值
   pay:
     configs:
       - appId: wxc2bbb6696a04ecd2 #微信h5支付
         mchId: 1489745992
-        mchKey: bgJX9MAaPn6cujl0d1R3lgATlR4ty8aH
+        mchKey: ${WX_PAY_MCH_KEY:}
         subAppId: #服务商模式下的子商户公众账号ID
         subMchId: #服务商模式下的子商户号
         keyPath: # p12证书的位置，可以指定绝对路径，也可以指定类路径（以classpath:开头）
       - appId: wx6eaeabceda8fb957 #微信小程序支付
         mchId: 1489745992
-        mchKey: bgJX9MAaPn6cujl0d1R3lgATlR4ty8aH
+        mchKey: ${WX_PAY_MCH_KEY:}
         subAppId: #服务商模式下的子商户公众账号ID
         subMchId: #服务商模式下的子商户号
         keyPath: # p12证书的位置，可以指定绝对路径，也可以指定类路径（以classpath:开头）
 # 百度图片搜索
 baidu:
   app-id: 124313843
-  api-key: wBIQ8jkmmQHadQa9rqJJO7q8
-  secret-key: QshGVZcm0c5yULhPxsWq1ki4k4bx4eTm
+  api-key: ${BAIDU_API_KEY:}
+  secret-key: ${BAIDU_SECRET_KEY:}
 travel:
 
   path: dev/data/xuhui_travel
